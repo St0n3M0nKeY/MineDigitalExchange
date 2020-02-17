@@ -5,8 +5,16 @@ Python client for Mine Digital Exchange API https://minedigital.exchange/
 A simple python client for Mine Digital Exchange API. Not all API calls have been implemented. Official documentation can be found at: https://minedigitalapidocumentationv1.docs.apiary.io/
 
 ---
-## Setup
-
+## Installation
+Clone the Git repository:
+```
+git clone https://github.com/St0n3M0nKeY/MineDigitalExchange.git
+```
+Go to the folder of the cloned repository and run:
+```
+python setup.py install
+```
+Run Python and import the Mine Digital client.
 
 ## Dependencies
 Install libs
