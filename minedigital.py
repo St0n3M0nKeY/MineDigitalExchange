@@ -114,6 +114,33 @@ class MineAPI:
         params['offset'] = offset
         return self.post_request(path, json.dumps(params))
 
+    def retail_quote(self, limit, settlementCurrency, tradedCurrency, price, amount, side, isIndicativeQuote, customRef):
+        #https://minedigitalapidocumentationv1.docs.apiary.io/#/reference/retail-trading
+        path = "api/3/retail/quote"
+        params = {}
+        params['quoteRequest'] = {}
+        params['quoteRequest']['orderType'] = limit
+        params['quoteRequest']['settlementCurrency'] = settlementCurrency
+        params['quoteRequest']['tradedCurrency'] = tradedCurrency
+        params['quoteRequest']['limitPriceInSettlementCurrency'] = price
+        params['quoteRequest']['tradedCurrencyAmount'] = amount
+        params['quoteRequest']['buyTradedCurrency'] = side
+        params['quoteRequest']['isIndicativeQuote'] = isIndicativeQuote
+        params['quoteRequest']['customRef'] = customRef
+        params['nonce'] = self.gen_nonce()
+        return self.post_request(path, json.dumps(params))
+
+    def retail_trade(self, quoteId, customRef, amount):
+        #https://minedigitalapidocumentationv1.docs.apiary.io/#/reference/retail-trading
+        path = "api/3/retail/trade"
+        params = {}
+        params['tradeRequest'] = {}
+        params['tradeRequest']['quoteId'] = quoteId
+        params['tradeRequest']['customRef'] = customRef
+        params['tradeRequest']['amount'] = amount
+        params['nonce'] = self.gen_nonce()
+        return self.post_request(path, json.dumps(params))
+
     def get_currencyStatic(self):
         #https://minedigitalapidocumentationv1.docs.apiary.io/#/reference/supported-currency-and-currency-pair/resource
         path = "api/3/currencyStatic"
