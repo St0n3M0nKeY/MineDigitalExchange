@@ -96,6 +96,26 @@ mine = minedigital.MineAPI(api_key, api_secret)
 print(mine.get_transactions(currency, from_timestamp, to_timestamp, max_results, offset, TransactionState)) # ("BTC", 1464675012000, 1464679012000, 50, 0, "PROCESSED")
 ```
 
+Retail Quote (RFQ)
+```
+import minedigital 
+
+mine = minedigital.MineAPI(api_key, api_secret)
+
+print(mine.retail_quote(limit, settlementCurrency, tradedCurrency, price, amount, side, isIndicativeQuote, customRef)) 
+#"LIMIT", "AUD", "BTC", 16000, 0.01, False, True, "565f2cdf-3f34-4881-bc80-46584c2c6b8d"
+```
+
+Retail Trade (RFQ)
+```
+import minedigital 
+
+mine = minedigital.MineAPI(api_key, api_secret)
+
+print(mine.retail_trade(quoteId, customRef, amount))
+#qouteId(from retail/quote), "565f2cdf-3f34-4881-bc80-46584c2c6b8d", 10
+```
+
 ## Usage - Streaming API - Public
 Get orderbook data
 ```
