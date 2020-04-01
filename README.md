@@ -113,7 +113,7 @@ import minedigital
 mine = minedigital.MineAPI(api_key, api_secret)
 
 print(mine.retail_trade(quoteId, customRef, amount))
-#qouteId(from retail/quote), "565f2cdf-3f34-4881-bc80-46584c2c6b8d", 10
+#quoteId(from retail/quote), "565f2cdf-3f34-4881-bc80-46584c2c6b8d", 0.01
 ```
 
 ## Usage - Streaming API - Public
