@@ -14,7 +14,7 @@ class MineAPI:
             self.__key = key
             self.__secret = base64.b64decode(secret)
 
-    def gen_nonce(self):
+    def gen_tonce(self):
         return str(int(time.time() * 1e6))
 
     def get_request(self, path):
@@ -48,7 +48,7 @@ class MineAPI:
         #https://minedigitalapidocumentationv1.docs.apiary.io/#/reference/account/resource
         path = "api/3/account"
         params = {}
-        params['nonce'] = self.gen_nonce()
+        params['tonce'] = self.gen_tonce()
         return self.post_request(path, json.dumps(params))
 
     def order_new(self, limit, settlementCurrency, tradedCurrency, price, amount, side):
@@ -62,7 +62,7 @@ class MineAPI:
         params['order']['limitPriceInSettlementCurrency'] = price
         params['order']['tradedCurrencyAmount'] = amount
         params['order']['buyTradedCurrency'] = side
-        params['nonce'] = self.gen_nonce()
+        params['tonce'] = self.gen_tonce()
         return self.post_request(path, json.dumps(params))
 
     def order_info(self, order_id):
@@ -70,7 +70,7 @@ class MineAPI:
         path = "api/3/order/info"
         params = {}
         params['orderId'] = order_id
-        params['nonce'] = self.gen_nonce()
+        params['tonce'] = self.gen_tonce()
         return self.post_request(path, json.dumps(params))
 
     def order_cancel(self, order_id):
@@ -78,14 +78,14 @@ class MineAPI:
         path = "api/3/order/cancel"
         params = {}
         params['orderIds'] = order_id
-        params['nonce'] = self.gen_nonce()
+        params['tonce'] = self.gen_tonce()
         return self.post_request(path, json.dumps(params))
 
     def get_transactions(self, currency, from_timestamp, to_timestamp, max_results, offset, TransactionState):
         #https://minedigitalapidocumentationv1.docs.apiary.io/#/reference/activities/resource
         path = "api/3/transaction/list"
         params = {}
-        params['nonce'] = self.gen_nonce()
+        params['tonce'] = self.gen_tonce()
         params['ccy'] = currency 
         params['transactionState'] = TransactionState
         params['from'] = from_timestamp
@@ -99,7 +99,7 @@ class MineAPI:
         #https://minedigitalapidocumentationv1.docs.apiary.io/#/reference/activities/resource-2
         path = "api/3/order/list"
         params = {}
-        params['nonce'] = self.gen_nonce()
+        params['tonce'] = self.gen_tonce()
         params['activeOnly'] = active_orders
         params['max'] = max_results 
         params['offset'] = offset 
@@ -109,7 +109,7 @@ class MineAPI:
         #https://minedigitalapidocumentationv1.docs.apiary.io/#/reference/activities/resource-3
         path = "api/3/trade/list"
         params = {}
-        params['nonce'] = self.gen_nonce()
+        params['tonce'] = self.gen_tonce()
         params['max'] = max_results 
         params['offset'] = offset
         return self.post_request(path, json.dumps(params))
@@ -127,7 +127,7 @@ class MineAPI:
         params['quoteRequest']['buyTradedCurrency'] = side
         params['quoteRequest']['isIndicativeQuote'] = isIndicativeQuote
         params['quoteRequest']['customRef'] = customRef
-        params['nonce'] = self.gen_nonce()
+        params['tonce'] = self.gen_tonce()
         return self.post_request(path, json.dumps(params))
 
     def retail_trade(self, quoteId, customRef, amount):
@@ -138,7 +138,7 @@ class MineAPI:
         params['tradeRequest']['quoteId'] = quoteId
         params['tradeRequest']['customRef'] = customRef
         params['tradeRequest']['amount'] = amount
-        params['nonce'] = self.gen_nonce()
+        params['tonce'] = self.gen_tonce()
         return self.post_request(path, json.dumps(params))
 
     def get_currencyStatic(self):
