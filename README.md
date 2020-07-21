@@ -2,7 +2,7 @@
 Python client for Mine Digital Exchange API https://minedigital.exchange/
 
 ---
-A simple python client for Mine Digital Exchange API. Not all API calls have been implemented. Official documentation can be found at: https://minedigitalapidocumentationv1.docs.apiary.io/
+A simple python client for Mine Digital Exchange API. Not all API calls have been implemented. Official documentation can be found at:  https://minedigitalexchange.docs.apiary.io
 
 ---
 ## Installation
